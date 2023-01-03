@@ -1,0 +1,11 @@
+        parseInput(op.input)
+        if op.operator == "+":
+            op.input = str(add(op.firstNumber, op.secondNumber))
+        elif op.operator == "-":
+            op.input = str(subtract(op.firstNumber, op.secondNumber))
+        elif op.operator == "*":
+            op.input = str(multiply(op.firstNumber, op.secondNumber))
+        elif op.operator == "/":
+            op.input = str(divide(op.firstNumber, op.secondNumber))
+        else:
+            op.input = "0"
