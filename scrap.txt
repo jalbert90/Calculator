@@ -21,3 +21,24 @@ def parseinput(input):
             op.secondnumber = float(numbers[1])
 			
 #OPERATORS = {"+", "-", "*", "/"}
+
+
+#in clearButtonPress()
+ip.input = ""
+    ip.input1 = ""
+    ip.input2 = ""
+    ip.firstNumber = 0.0
+    ip.secondNumber = 0.0
+    ip.operatorInInput = False
+    ip.firstNumberInInput = False
+    ip.operator = ""
+	
+	
+#in equalsButtonPress() except
+ip.output = "error"
+        ip.input1 = "0"
+        ip.input2 = "0"
+        ip.firstNumber = 0.0
+        ip.secondNumber = 0.0
+        ip.input = "0"
+        ip.operatorInInput = False

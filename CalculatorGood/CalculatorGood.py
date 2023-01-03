@@ -2,7 +2,7 @@ import tkinter as tk
 
 root = tk.Tk()
 root.title('calc')
-root.geometry("150x150")
+root.geometry("160x150")
 root.resizable(False, False)
 
 inpt = tk.Label(root, text="")
@@ -30,9 +30,9 @@ OPERATIONS = {
 def operation(operator, a, b):
     return OPERATIONS[operator](a, b)
 
-class Operation:
+class Input:
     def __init__(self):
-        self.input = ""
+        self.expression = ""
         self.input1 = ""
         self.input2 = ""
         self.operatorInInput = False
@@ -40,89 +40,92 @@ class Operation:
         self.firstNumber = 0.0
         self.secondNumber = 0.0
         self.result = 0.0
-        self.output = ""
+        self.firstNumberInInput = False
+
+    def reset(self):
+        self.expression = ""
+        self.input1 = ""
+        self.input2 = ""
+        self.operatorInInput = False
+        self.operator = ""
+        self.firstNumber = 0.0
+        self.secondNumber = 0.0
+        self.result = 0.0
         self.firstNumberInInput = False
 
     def isValidOperatorInput(self):
-        if self.input == "" or self.input == '.' or self.operatorInInput == True:
+        if self.expression == "" or self.expression == '.' or self.operatorInInput == True:
             return False
         else:
             return True
 
+    def isValidDecimalInput(self, input):
+        for i in input:
+            if i == '.':
+                return False
+        return True
+
     def setOperator(self, operator):
         self.operator = operator
-        self.input += operator
+        self.expression += operator
         self.operatorInInput = True
         self.firstNumberInInput = True
-        inpt.configure(text=self.input)
+        inpt.configure(text=self.expression)
 
-op = Operation()
+ip = Input()
 
 def convertInputsToFloats(input1, input2):
     try:
-        op.firstNumber = float(input1)
+        ip.firstNumber = float(input1)
         if input2 != "":
-            op.secondNumber = float(input2)
+            ip.secondNumber = float(input2)
     except:
         print("Couldn't convert inputs to floats")
 
 def plusButtonPress():
-    if op.isValidOperatorInput() == True:
-        op.setOperator('+')
+    if ip.isValidOperatorInput() == True:
+        ip.setOperator('+')
 plusButton = tk.Button(root, text='+', command=plusButtonPress)
-plusButton.place(x=125, y=0)
+plusButton.place(x=140, y=25)
 
 def subtractButtonPress():
-    if op.isValidOperatorInput() == True:
-        op.setOperator('-')
+    if ip.isValidOperatorInput() == True:
+        ip.setOperator('-')
 subtractButton = tk.Button(root, text='-', command=subtractButtonPress)
-subtractButton.place(x=125, y=25)
+subtractButton.place(x=140, y=50)
 
 def multiplyButtonPress():
-    if op.isValidOperatorInput() == True:
-        op.setOperator('*')
+    if ip.isValidOperatorInput() == True:
+        ip.setOperator('*')
 multiplyButton = tk.Button(root, text='*', command=multiplyButtonPress)
-multiplyButton.place(x=125, y=50)
+multiplyButton.place(x=140, y=75)
 
 def divideButtonPress():
-    if op.isValidOperatorInput() == True:
-        op.setOperator('/')
+    if ip.isValidOperatorInput() == True:
+        ip.setOperator('/')
 divideButton = tk.Button(root, text='/', command=divideButtonPress)
-divideButton.place(x=125, y=75)
+divideButton.place(x=140, y=100)
 
 def equalsButtonPress():
     try:
-        op.operatorInInput = False
-        if op.input != "":
-            convertInputsToFloats(op.input1, op.input2)
-            op.result = operation(op.operator, op.firstNumber, op.secondNumber)
-            op.output = str(op.result)
-        op.input1 = op.output
-        op.input2 = ""
-        op.input = op.output
+        ip.operatorInInput = False
+        if ip.expression != "":
+            convertInputsToFloats(ip.input1, ip.input2)
+            ip.result = operation(ip.operator, ip.firstNumber, ip.secondNumber)
+            ip.expression = str(ip.result)
+        ip.input1 = ip.expression
+        ip.input2 = ""
     except:
-        op.output = "error"
-        op.input1 = "0"
-        op.input2 = "0"
-        op.firstNumber = 0.0
-        op.secondNumber = 0.0
-        op.input = "0"
-        op.operatorInInput = False
+        ip.reset()
+        ip.expression = "error"
         print("Error in equalsButtonPress()")
-    inpt.configure(text=op.output)
+    inpt.configure(text=ip.expression)
 equalsButton = tk.Button(root, text='=', command=equalsButtonPress)
-equalsButton.place(x = 125, y = 125)
+equalsButton.place(x = 140, y = 125)
 
 def clearButtonPress():
-    op.input = ""
-    op.input1 = ""
-    op.input2 = ""
-    op.firstNumber = 0.0
-    op.secondNumber = 0.0
-    op.operatorInInput = False
-    op.firstNumberInInput = False
-    op.operator = ""
-    inpt.configure(text=op.input)
+    ip.reset()
+    inpt.configure(text=ip.expression)
 clearButton = tk.Button(root, text='clear', command=clearButtonPress)
 
 frm = tk.Frame(root)
@@ -135,12 +138,12 @@ class numberButton:
         self.button = tk.Button(frm, text=value, command=self.numberButtonPress).grid(row=i, column=j)
 
     def numberButtonPress(self):
-        if op.firstNumberInInput == False:
-            op.input1 += str(self.value)
+        if ip.firstNumberInInput == False:
+            ip.input1 += str(self.value)
         else:
-            op.input2 += str(self.value)
-        op.input += str(self.value)
-        inpt.configure(text=op.input)
+            ip.input2 += str(self.value)
+        ip.expression += str(self.value)
+        inpt.configure(text=ip.expression)
 
 value = 1
 for i in range(1, 4):
@@ -148,7 +151,18 @@ for i in range(1, 4):
         numberButton(i, j, value)
         value += 1
 numberButton(4, 1, 0)
-numberButton(4, 3, '.')
+
+def decimalButtonPress():
+    if ip.firstNumberInInput == False and ip.isValidDecimalInput(ip.input1):
+        ip.input1 += str('.')
+        ip.expression += str('.')
+        inpt.configure(text=ip.expression)
+    if ip.firstNumberInInput == True and ip.isValidDecimalInput(ip.input2):
+        ip.input2 += str('.')
+        ip.expression += str('.')
+        inpt.configure(text=ip.expression)
+decimalButton = tk.Button(root, text='.', command=decimalButtonPress)
+decimalButton.place(x=90, y=99)
 
 frm.pack()
 clearButton.pack()
