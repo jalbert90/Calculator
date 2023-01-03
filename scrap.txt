@@ -9,3 +9,15 @@
             op.input = str(divide(op.firstNumber, op.secondNumber))
         else:
             op.input = "0"
+			
+			
+			
+def parseinput(input):
+    for i in input:
+        if i in operators:
+            op.operator = i
+            numbers = input.split(i)
+            op.firstnumber = float(numbers[0])
+            op.secondnumber = float(numbers[1])
+			
+#OPERATORS = {"+", "-", "*", "/"}

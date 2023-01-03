@@ -9,8 +9,6 @@ inpt = tk.Label(root, text="")
 inpt.pack()
 quitButton = tk.Button(root, text='quit', command=root.destroy)
 
-#OPERATORS = {"+", "-", "*", "/"}
-
 def add(a, b):
     return a + b
 def subtract(a, b):
@@ -18,7 +16,10 @@ def subtract(a, b):
 def multiply(a, b):
     return a * b
 def divide(a, b):
-    return a / b
+    try:
+        return a / b
+    except:
+        print("error in divide(a, b)--possible division by 0")
 
 OPERATIONS = {
     '+' : add,
@@ -48,53 +49,63 @@ class Operation:
         else:
             return True
 
-op = Operation()
+    def setOperator(self, operator):
+        self.operator = operator
+        self.input += operator
+        self.operatorInInput = True
+        self.firstNumberInInput = True
+        inpt.configure(text=self.input)
 
-def parseInput(input):
-    for i in input:
-        if i in OPERATORS:
-            op.operator = i
-            numbers = input.split(i)
-            op.firstNumber = float(numbers[0])
-            op.secondNumber = float(numbers[1])
+op = Operation()
 
 def convertInputsToFloats(input1, input2):
     try:
         op.firstNumber = float(input1)
-        op.secondNumber = float(input2)
+        if input2 != "":
+            op.secondNumber = float(input2)
     except:
         print("Couldn't convert inputs to floats")
 
 def plusButtonPress():
     if op.isValidOperatorInput() == True:
-        op.operator = '+'
-        op.input += "+"
-        op.operatorInInput = True
-        op.firstNumberInInput = True
-        inpt.configure(text=op.input)
+        op.setOperator('+')
 plusButton = tk.Button(root, text='+', command=plusButtonPress)
 plusButton.place(x=125, y=0)
 
 def subtractButtonPress():
     if op.isValidOperatorInput() == True:
-        op.input += "-"
-        op.operatorInInput = True
-        inpt.configure(text=op.input)
+        op.setOperator('-')
 subtractButton = tk.Button(root, text='-', command=subtractButtonPress)
 subtractButton.place(x=125, y=25)
+
+def multiplyButtonPress():
+    if op.isValidOperatorInput() == True:
+        op.setOperator('*')
+multiplyButton = tk.Button(root, text='*', command=multiplyButtonPress)
+multiplyButton.place(x=125, y=50)
+
+def divideButtonPress():
+    if op.isValidOperatorInput() == True:
+        op.setOperator('/')
+divideButton = tk.Button(root, text='/', command=divideButtonPress)
+divideButton.place(x=125, y=75)
 
 def equalsButtonPress():
     try:
         op.operatorInInput = False
-        convertInputsToFloats(op.input1, op.input2)
-        op.result = operation(op.operator, op.firstNumber, op.secondNumber)
-        op.output = str(op.result)
+        if op.input != "":
+            convertInputsToFloats(op.input1, op.input2)
+            op.result = operation(op.operator, op.firstNumber, op.secondNumber)
+            op.output = str(op.result)
         op.input1 = op.output
         op.input2 = ""
         op.input = op.output
     except:
-        op.output = "0"
+        op.output = "error"
         op.input1 = "0"
+        op.input2 = "0"
+        op.firstNumber = 0.0
+        op.secondNumber = 0.0
         op.input = "0"
         op.operatorInInput = False
         print("Error in equalsButtonPress()")
@@ -106,7 +117,10 @@ def clearButtonPress():
     op.input = ""
     op.input1 = ""
     op.input2 = ""
+    op.firstNumber = 0.0
+    op.secondNumber = 0.0
     op.operatorInInput = False
+    op.firstNumberInInput = False
     op.operator = ""
     inpt.configure(text=op.input)
 clearButton = tk.Button(root, text='clear', command=clearButtonPress)
