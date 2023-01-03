@@ -5,6 +5,14 @@ VisualStudioVersion = 16.0.33130.400
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CalculatorGood", "CalculatorGood\CalculatorGood.pyproj", "{F93B791E-F25B-4247-95EB-E78F2644C5CE}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "calcA", "calcA\calcA.pyproj", "{363EC2FC-3933-4BFD-AD5B-E6B5089AAAC1}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "calcB", "calcB\calcB.pyproj", "{8F7F7ED0-76EB-48CC-B620-512692A467AD}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "calcC", "calcC\calcC.pyproj", "{7E5BBF0F-4E51-4497-844D-043BC15347EA}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "calcD", "calcD\calcD.pyproj", "{50CBD8A8-13FF-4F4A-97DD-3F1BF60CD296}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +21,14 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F93B791E-F25B-4247-95EB-E78F2644C5CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F93B791E-F25B-4247-95EB-E78F2644C5CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{363EC2FC-3933-4BFD-AD5B-E6B5089AAAC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{363EC2FC-3933-4BFD-AD5B-E6B5089AAAC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F7F7ED0-76EB-48CC-B620-512692A467AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F7F7ED0-76EB-48CC-B620-512692A467AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E5BBF0F-4E51-4497-844D-043BC15347EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E5BBF0F-4E51-4497-844D-043BC15347EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50CBD8A8-13FF-4F4A-97DD-3F1BF60CD296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50CBD8A8-13FF-4F4A-97DD-3F1BF60CD296}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
