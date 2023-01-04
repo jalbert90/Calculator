@@ -13,6 +13,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "calcC", "calcC\calcC.pyproj
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "calcD", "calcD\calcD.pyproj", "{50CBD8A8-13FF-4F4A-97DD-3F1BF60CD296}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "modelCompletionTest", "modelCompletionTest\modelCompletionTest.pyproj", "{0EA51F99-442A-492F-BB8A-25E65855F12E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,8 @@ Global
 		{7E5BBF0F-4E51-4497-844D-043BC15347EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50CBD8A8-13FF-4F4A-97DD-3F1BF60CD296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{50CBD8A8-13FF-4F4A-97DD-3F1BF60CD296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EA51F99-442A-492F-BB8A-25E65855F12E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EA51F99-442A-492F-BB8A-25E65855F12E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
